@@ -1,0 +1,57 @@
+datafile='list.txt'  # File with the files list. You can generate it by doing: ls *.out > filename.dat. NOTE: For a cube, it needs to be in the cube sequece.
+
+outfile='RiffelOutputs.dat'  # File where the output will be stored.
+
+Zs=[0.0001,0.0004,0.004,0.008,0.02,0.05] # Metallicity array. Now setted for M05 base. Be carrefull original base has 0.0001, wich in turn is 0.0004.
+
+inter = False # If you are running the code in the Ipython, use True or False, without ''
+
+doPlots = True # If you want to do the plots please, set it to yes
+
+figext='.png' # If do plots yes, you can choose the extension of the output plots.
+
+figsdir='./riffelPlots/'  #Dir to store the figures. It need the ./ and / 
+
+MakeMovie=False # Make movie of the plots
+
+MovieName='teste.avi' # If MakeMovie = yes, insert the movie name
+
+SaveResidual= False # save the residual spectrum, multiplied by the normalization flux.
+
+IsAGNComp= True # If there is the AGN component and you wants to show it in the plots. If you set it as no, the population vectors will not be extracted.
+
+pltmask= True # Overplot the mask/cliped points to the observed spectrum.
+
+datacube= False # if you are you analysis a datacube. In that case set xcol and ycols
+
+xcol=9  # xcol = ncols - 1, it starts with 0
+ycol=3  # ycol = ncols - 1, it starts with 0
+
+SFR = 50E6 # SFR over the last XX years.
+
+NormFac = 1 # Normalization Factor if none, = 1
+
+SaveDist = False # Save Galaxy distance 
+
+FramesSecond = 3 # Number of frames per second 
+
+
+###################################################################################
+#                                                                                 #
+#        Only edit the following lines if you know what you are doing             #
+#                                                                                 #
+###################################################################################
+
+# population vectors intervals. Sintax used x0 < xvec <= x1, the last is included 
+
+BinPopVecMassLab=['my','mi','mo'] # Labels for the plot needs to follow the names for the library below.
+BinPopVecLab=['xy','xi','xo'] # needs to be the same as below. 
+BinPopVec={'xy':[1e3, 50e6],'xi': [51e6,2e9],'xo':[2.01e9,15e9]}  # Insert the intervals, you can add more. 
+
+# hot dust intervals Same idea as population vectors
+BinHDVecLab=['BB_c','BB_h']
+BinHDVec={'BB_c':[0, 1000],'BB_h':[1000,1500]}
+
+# hot dust intervals 
+BinFCVecLab=['FC1.25','FC1.50', 'FC1.75']
+BinFCVec={'FC1.25':[0, 1.25],'FC1.50':[1.26,1.50],'FC1.75':[1.51,1.75]}
