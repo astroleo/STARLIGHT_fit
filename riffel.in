@@ -1,0 +1,17 @@
+2                                                [Number of fits to run]
+./BasesDir/                   [base_dir]
+./spectra/                    [obs_dir]
+./masks/                      [mask_dir]
+./out_dir/                    [out_dir]
+-519885670                                         [your phone number]
+6810.0                                           [llow_SN]   lower-lambda of S/N window
+6870.0                                           [lupp_SN]   upper-lambda of S/N window
+6100.0                                           [Olsyn_ini] lower-lambda for fit
+9400.0                                           [Olsyn_fin] upper-lambda for fit
+1.0                                              [Odlsyn]    delta-lambda for fit
+1.0                                              [fscale_chi2] fudge-factor for chi2
+FIT                                              [FIT/FXK] Fit or Fix kinematics
+0                                                [IsErrSpecAvailable]  1/0 = Yes/No
+0                                                [IsFlagSpecAvailable] 1/0 = Yes/No
+ESO208_1.txt   StCv04.C11.config.slow   Base.BC03.S   mask_ESO208_1.sm  HZ5   0.0   150   ESO208_1RR.out
+ESO208_1_zcor.spec StCv04.C11.config.slow   Base.BC03.S   mask_ESO208_1_zcor.sm  HZ5   0.0   150   ESO208_1zcorRR.out
