@@ -7,7 +7,7 @@
 6050.0                                           [llow_SN]   lower-lambda of S/N window
 6080.0                                           [lupp_SN]   upper-lambda of S/N window
 3850.0                                           [Olsyn_ini] lower-lambda for fit
-9500.0                                           [Olsyn_fin] upper-lambda for fit
+10000.0                                          [Olsyn_fin] upper-lambda for fit
 1.0                                              [Odlsyn]    delta-lambda for fit
 1.0                                              [fscale_chi2] fudge-factor for chi2
 FXK                                              [FIT/FXK] Fit or Fix kinematics

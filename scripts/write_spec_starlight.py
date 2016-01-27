@@ -14,7 +14,7 @@ import pdb
 ##    z              redshift of object
 ##    wrange         restframe wavelength range to use (must obviously be smaller 
 ##                     than de-redshifted wavelength range of input spectrum)
-##                     wrange is given in Angstrom
+##                     wrange is given in Angstrom, inclusive range, i.e. start *and* end points are included
 ##
 def write_spec_starlight(calspec_file,outfile,z,wrange):
 	wave,flux,noise = unmask_spectra(calspec_file)
@@ -37,7 +37,7 @@ def write_spec_starlight(calspec_file,outfile,z,wrange):
 	##
 	## define output wavelength vector
 	wsampling=1 ## wavelength sampling in Angstrom
-	lamgrid=wrange[0] + wsampling * np.arange(np.floor((wrange[1]-wrange[0])/wsampling))
+	lamgrid=wrange[0] + wsampling * np.arange(1+np.floor((wrange[1]-wrange[0])/wsampling))
 
 	##
 	## convolve to resolution of spectral base, i.e. BC03 res = 3 \AA

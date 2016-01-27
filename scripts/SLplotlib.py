@@ -4,6 +4,8 @@ import numpy as np
 import os
 import glob
 
+import pdb
+
 
 ##
 ## wishlist
@@ -14,7 +16,7 @@ import glob
 ##
 ## synRange: restrict plot to wavelength range in which the synthesis was done
 
-def plotSL(id,pdf=False,synRange=True,plotSFH=True):
+def plotSL(id,pdf=False,synRange=True,plotSFH=True,llow_norm=6810,lupp_norm=6870,Olsyn_ini=3800,Olsyn_fin=10000):
 	os.chdir(os.getenv("HOME")+"/STARLIGHT")
 	
 	file_obs="spectra/"+id+".txt"
@@ -28,8 +30,6 @@ def plotSL(id,pdf=False,synRange=True,plotSFH=True):
 
 	##
 	## normalize spectrum the same way STARLIGHT does
-	llow_norm=6100
-	lupp_norm=6200
 	norm=np.median(spec_obs['flux'][(spec_obs['wave'] >= llow_norm) & (spec_obs['wave'] <= lupp_norm)])
 	wobs=spec_obs['wave']
 	fobs=spec_obs['flux']/norm
@@ -96,12 +96,8 @@ def plotSL(id,pdf=False,synRange=True,plotSFH=True):
 	ylim_lo = 0.5
 	ylim_hi = 3
 	
-#	w_min=6400
-#	w_max=6800
-#	w_min=4000
-#	w_max=18000
-	w_min=3850
-	w_max=9500
+	w_min=Olsyn_ini
+	w_max=Olsyn_fin
 	
 	plt.xlim((w_min,w_max))
 #	plt.ylim((ylim_lo,ylim_hi))
@@ -119,6 +115,7 @@ def plotSL(id,pdf=False,synRange=True,plotSFH=True):
 		print("fsyn.size is greater than fobs.size")
 
 	## bring fsyn and fobs to same length
+#	pdb.set_trace()
 	fres = fobs[(wobs >= wsyn[0]) & (wobs <= wsyn[-1])] - fsyn
 
 	plt.subplot2grid(gridsize,gridpos_res,rowspan=1,colspan=3)
