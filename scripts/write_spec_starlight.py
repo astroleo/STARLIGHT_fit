@@ -5,6 +5,8 @@ import os
 from unmask_spectra import unmask_spectra
 from matplotlib import pyplot as plt
 
+import pdb
+
 ##
 ## arguments:
 ##    calspec_file   calibrated spectrum of science object
@@ -51,16 +53,28 @@ def write_spec_starlight(calspec_file,outfile,z,wrange):
 	flux=gaussian_filter1d(flux,sigma)
 	##
 	## interpolation is flux-conserving when accounting for different spectral pixel size
-	##    dl is 0.2 in UVB and VIS, 0.6 in NIR; here we re-sample to 2 \AA
+	##    dl is 0.2 in UVB and VIS, 0.6 in NIR
 	##
 	f=interp1d(wave,flux)
 	iflux=f(lamgrid)
 	
 	##
 	## interpolate inverse variance (since this is the additive quantity)
+	##
+	## interpolation is not enough; need to also reduce the noise!
 	v=interp1d(wave,1/(noise**2))
 	ivariance=v(lamgrid)
 	inoise=1/np.sqrt(ivariance)
+	##
+	## reduce noise by 1/sqrt(N) where N is number of bins averaged over
+#	pdb.set_trace()
+	N = wsampling/np.diff(wave)
+	N2=np.hstack([N[0],N]) ## np.diff reduces size of array by 1
+	Ni = interp1d(wave,N2)
+	Ninterp = Ni(lamgrid)
+
+	fac=np.sqrt(Ninterp)
+	inoise/=fac
 
 	## masks for transition regions of XSHOOTER spectral arms
 	imask=np.zeros(iflux.shape)

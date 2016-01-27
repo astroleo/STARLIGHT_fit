@@ -100,7 +100,7 @@ def plotSL(id,pdf=False,synRange=True,plotSFH=True):
 #	w_max=6800
 #	w_min=4000
 #	w_max=18000
-	w_min=6000
+	w_min=3850
 	w_max=9500
 	
 	plt.xlim((w_min,w_max))
